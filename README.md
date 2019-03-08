@@ -1,6 +1,8 @@
 # DMIG
 Repository for the DMIG (Radboudumc)
 
+Requirements: R & R-studio
+
 Step 1: 
 
 Decision Tree: Open Decision Tree_Colorectal Cancer + PSA
@@ -8,6 +10,8 @@ Create the decision tree in R.
 Product: 3 ICERs to compare the 3 strategies. Which one has the lowest ICER?
 
 Check your final script with the answers located in the "Answer" folder.
+
+
 
 Step 2: 
 
