@@ -1,0 +1,4 @@
+"Costs" "LE" "Inc.Cost" "Inc.Effects" "ICER"
+"Routine Practice" 8873.5 3.1 0 0 NA
+"Primary Care" 9240 3.4 366.5 0.300000000000001 1221.67
+"Hospital Care" 10710 3.7 1836.5 0.600000000000001 3060.83

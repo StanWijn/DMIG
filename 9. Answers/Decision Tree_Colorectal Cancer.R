@@ -42,8 +42,8 @@ names(LE) <- names(C) <- c("RP", "PC", "HC")    # names for the elements of the 
 
 
 # estimating pairwise incremental costs and effects
-DC      <-  C  - C[c(1,1,2)]      # incremental costs
-DE      <- LE - LE[c(1,1,2)]      # incremental effectiveness
+DC      <-  C  - C[c(1,1,1)]      # incremental costs
+DE      <- LE - LE[c(1,1,1)]      # incremental effectiveness
 ICER    <- DC / DE                # Incremental cost-effectiveness ratios
 ICER[1] <- NA
 NMB     <- LE * wtp - C           # calculate net monetary benefit
