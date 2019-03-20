@@ -98,21 +98,29 @@ n.sim <- 10000
 df.psa <- gen_psa(n.sim = n.sim)
 ## Initialize matrix of outcomes
 df.out <- matrix(NaN, nrow = n.sim, ncol = 2)
-colnames(df.out) <- c("TE", "TC")
+colnames(df.out) <- c("TC", "TE")
 
 ## Run PSA
-p <- Sys.time()   # save system time 
+
 for(i in 1:n.sim){
   df.out[i,] <- MM.3state(df.psa[i, ])
   cat('\r', paste(round(i/n.sim * 100), "% done", sep = " "))       # display the progress of the simulation
 }
-t.psa <- Sys.time() - p  # calculate time to run the analusis by extracting p from the current system time 
 
-t.psa
+
+
 source("Functions/PSA_functions.R")
 ScatterCE(strategies = "treatment", m.e = data.frame(df.out[, "TE"]), m.c = data.frame(df.out[, "TC"])) # cost-effectiveness plane
 
+# CEAC: only available with 2 strategies
 v.wtp <- c(1, seq(5000, 150000, length.out = 31))
-ceaf(v.wtp, strategies = "treatment",m.e = data.frame(df.out[, "TE"]), m.c = data.frame(df.out[, "TC"]))
+ceaf(v.wtp, strategies = c("treatment", "control"), m.e = data.frame(df.out[, "TE"]), m.c = data.frame(df.out[, "TC"]))
 
+m.e <- matrix(ncol=2, nrow= n.sim)
+m.e[,1] <- df.out[, "TE"]
+m.e[,2] <- df.out[, "TE"]
 
+m.c <- matrix(ncol=2, nrow= n.sim)
+m.c[,1] <- df.out[, "TC"]
+m.c[,2] <- df.out[, "TC"]
+ceaf(v.wtp, strategies = c("treatment", "control"), m.e = m.e, m.c = m.c)
